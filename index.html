@@ -78,6 +78,7 @@ main{max-width:760px;margin:auto;padding:12px}
   <div id="empty" class="empty">No dishes found.</div>
   <div class="note">Items with two prices are Half / Full portions.</div>
   <div class="foot"><b>Santosh Pav Bhaji</b><br>Shop no.6, Kamla Park, Building no.3, Opp. Geeta Nagar Gate, Phatak Rd, Bhayandar West, Mumbai, Maharashtra 401101<br><a id="map" href="https://maps.google.com/maps?q=Santosh+Pav+Bhaji+Bhayandar+West" target="_blank" rel="noopener">📍 Open in Maps</a> · <a href="#" id="fbOpen2">⭐ Give feedback</a></div>
+<section id="publicReviews" style="max-width:760px;margin:0 auto;padding:0 12px 20px"><div class="foot"><b>Customer Reviews</b></div><div id="publicReviewList"></div></section>
 </main>
 
 <div class="cartbar"><div class="in">
@@ -98,18 +99,22 @@ main{max-width:760px;margin:auto;padding:12px}
 </div></div>
 
 <div class="ov" id="fb"><div class="sheet">
-  <div class="sh"><h2>Your Feedback</h2><button class="x" id="fbClose">✕</button></div>
-  <p style="margin:8px 0 0;color:var(--muted)">How was your experience with us?</p>
+  <div class="sh"><h2>Google Feedback</h2><button class="x" id="fbClose">✕</button></div>
+  <p style="margin:8px 0 0;color:var(--muted)">Share your experience with us on Google.</p>
+  <button class="btn" id="googleReview" type="button">⭐ Leave a Google Review</button>
+  <div id="reviewWall" style="margin-top:18px"></div>
+  <div class="note" style="padding-left:0;padding-right:0">After leaving your review on Google, you can also add the same feedback below so it can appear in the website's customer-review section.</div>
   <div class="stars" id="stars"></div><div class="rl" id="rl"></div>
   <label class="f" for="fn">Your name (optional)</label><input id="fn" class="in2" autocomplete="name" placeholder="Name">
-  <label class="f" for="fc">Comments</label><textarea id="fc" class="in2" rows="4" placeholder="Taste, service, delivery, suggestions…"></textarea>
+  <label class="f" for="fc">Your feedback</label><textarea id="fc" class="in2" rows="4" placeholder="Write your feedback…"></textarea>
   <div class="err" id="ferr"></div>
-  <button class="btn wa" id="fbSend">Send Feedback on WhatsApp</button>
-</div></div>
+  <button class="btn" id="fbSave" type="button">Show Feedback on Website</button>
+ </div></div>
 
 <script>
-const WA="918828640966";
-const SHOP="Santosh Pav Bhaji"; // change to your restaurant name
+const WA="919569884643";
+const SHOP="Santosh Pav Bhaji";
+const GOOGLE_REVIEW_URL="https://search.google.com/local/writereview?placeid=ChIJjRfCNM2x5zsRLrccCmFItuE";
 // Optional real photos: add "Dish Name":"photo-url". Works when this file is hosted on your own site.
 // Example: "Paneer Chill":"images/paneer-chill.jpg"   (dishes without a photo show an emoji tile)
 const IMG={};
@@ -186,21 +191,33 @@ $("search").addEventListener("input",()=>{
   document.querySelectorAll(".cat").forEach(c=>c.classList.toggle("hid",!c.querySelector(".item:not(.hid)")));
   $("empty").style.display=v?"none":"block";
 });
-// ---- Feedback ----
+// ---- Google Feedback ----
 let rating=0;const RL=["","Poor 😞","Fair 😐","Good 🙂","Very good 😃","Excellent 🤩"];
 function stars(){$("stars").innerHTML=[1,2,3,4,5].map(i=>`<button type="button" aria-label="${i} star" data-r="${i}" class="${i<=rating?"on":""}">★</button>`).join("");$("rl").textContent=RL[rating]}
-function openFb(e){if(e)e.preventDefault();$("ferr").textContent="";stars();$("fb").classList.add("show")}
-$("fbOpen").onclick=openFb;$("fbOpen2").onclick=openFb;
-$("fbClose").onclick=()=>$("fb").classList.remove("show");
+function esc(v){return String(v).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",""":"&quot;"}[m]))}
+function getReviews(){try{return JSON.parse(localStorage.getItem("siteReviews")||"[]")}catch(e){return[]}}
+function renderReviews(){
+  const reviews=getReviews();
+  $("reviewWall").innerHTML=reviews.length?'<h3 style="margin:0 0 8px">Customer Reviews</h3>'+reviews.slice().reverse().map(r=>`<div style="padding:10px 0;border-bottom:1px dashed var(--bd)"><b>${esc(r.name||"Customer")}</b><div>${"⭐".repeat(r.rating)}</div><div style="margin-top:4px">${esc(r.text)}</div></div>`).join(""):'<div style="color:var(--muted);font-size:13px">No website feedback has been added yet.</div>';
+}
+function renderPublicReviews(){
+  const reviews=getReviews();
+  $("publicReviewList").innerHTML=reviews.length?reviews.slice().reverse().map(r=>`<div style="background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin:8px 0"><b>${esc(r.name||"Customer")}</b><div>${"⭐".repeat(r.rating)}</div><div style="margin-top:5px">${esc(r.text)}</div></div>`).join(""):''<div class="note">No customer reviews yet.</div>'';
+}
+function openFb(e){if(e)e.preventDefault();$("ferr").textContent="";stars();renderReviews();renderPublicReviews();$("fb").classList.add("show")}
+$("fbOpen").onclick=openFb;$('fbOpen2').onclick=openFb;
+$("fbClose").onclick=()=>$('fb').classList.remove("show");
 $("fb").onclick=e=>{if(e.target.id==="fb")$("fb").classList.remove("show")};
 $("stars").onclick=e=>{const b=e.target.closest("[data-r]");if(!b)return;rating=+b.dataset.r;stars()};
-$("fbSend").onclick=()=>{
+$("googleReview").onclick=()=>window.open(GOOGLE_REVIEW_URL,"_blank","noopener");
+$("fbSave").onclick=()=>{
   const nm=$("fn").value.trim(),c=$("fc").value.trim();
-  if(!rating){$("ferr").textContent="Please tap a star rating.";return}
-  const msg=`*Feedback — ${SHOP}*\n\n*Rating:* ${"⭐".repeat(rating)} (${rating}/5)`+(nm?`\n*Name:* ${nm}`:"")+(c?`\n\n${c}`:"");
-  window.location.href="https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
+  if(!rating||!c){$("ferr").textContent="Please select a star rating and write your feedback.";return}
+  const reviews=getReviews();reviews.push({name:nm,rating,text:c,at:new Date().toISOString()});
+  try{localStorage.setItem("siteReviews",JSON.stringify(reviews))}catch(e){}
+  $("fn").value="";$("fc").value="";rating=0;stars();renderReviews();renderPublicReviews();$("ferr").textContent="Feedback added to this website on this device.";
 };
-render();update();
+render();update();renderPublicReviews();
 </script>
 </body>
 </html>
