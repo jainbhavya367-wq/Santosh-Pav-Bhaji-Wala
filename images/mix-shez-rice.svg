@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff8dc"/><stop offset="1" stop-color="#d6a72c" stop-opacity=".28"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-opacity=".18"/></filter></defs>
+<rect width="480" height="320" rx="28" fill="url(#g)"/>
+<circle cx="400" cy="50" r="70" fill="#da77f2" opacity=".18"/><circle cx="70" cy="270" r="90" fill="#c2255c" opacity=".12"/>
+<g filter="url(#s)"><ellipse cx="240" cy="190" rx="150" ry="78" fill="#fff" stroke="#ddd" stroke-width="5"/></g>
+<g><rect x="137" y="163" width="26" height="13" rx="6" fill="#d6a72c" transform="rotate(-10 150 169)"/><rect x="128" y="175" width="22" height="11" rx="5" fill="#c2255c" transform="rotate(-4 139 180)"/><rect x="175" y="139" width="18" height="9" rx="4" fill="#da77f2" transform="rotate(2 184 143)"/><rect x="199" y="168" width="32" height="16" rx="8" fill="#7f5539" transform="rotate(8 215 176)"/><rect x="243" y="187" width="28" height="14" rx="7" fill="#f08c00" transform="rotate(14 257 194)"/><rect x="222" y="141" width="24" height="12" rx="6" fill="#4dabf7" transform="rotate(-15 234 147)"/><rect x="251" y="169" width="20" height="10" rx="5" fill="#d6a72c" transform="rotate(-9 261 174)"/><rect x="234" y="163" width="16" height="8" rx="4" fill="#c2255c" transform="rotate(-13 242 167)"/><rect x="188" y="141" width="30" height="15" rx="7" fill="#da77f2" transform="rotate(-7 203 148)"/></g>
+<text x="240" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#6d5607">Rice</text>
+<text x="240" y="285" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#6d5607">Mix Shez Rice</text>
+<text x="240" y="308" text-anchor="middle" font-family="Arial,sans-serif" font-size="34">🍛</text>
+</svg>

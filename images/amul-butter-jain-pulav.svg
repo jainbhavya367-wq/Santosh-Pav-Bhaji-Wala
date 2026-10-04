@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf7fb"/><stop offset="1" stop-color="#3f8fb0" stop-opacity=".28"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-opacity=".18"/></filter></defs>
+<rect width="480" height="320" rx="28" fill="url(#g)"/>
+<circle cx="400" cy="50" r="70" fill="#ff8787" opacity=".18"/><circle cx="70" cy="270" r="90" fill="#2f9e44" opacity=".12"/>
+<g filter="url(#s)"><ellipse cx="240" cy="190" rx="150" ry="78" fill="#fff" stroke="#ddd" stroke-width="5"/></g>
+<g><rect x="142" y="126" width="30" height="15" rx="7" fill="#3f8fb0" transform="rotate(-10 157 133)"/><rect x="131" y="122" width="26" height="13" rx="6" fill="#2f9e44" transform="rotate(-14 144 128)"/><rect x="227" y="120" width="22" height="11" rx="5" fill="#ff8787" transform="rotate(-8 238 125)"/><rect x="200" y="119" width="18" height="9" rx="4" fill="#7f5539" transform="rotate(-2 209 123)"/><rect x="184" y="118" width="32" height="16" rx="8" fill="#f08c00" transform="rotate(4 200 126)"/><rect x="173" y="130" width="28" height="14" rx="7" fill="#4dabf7" transform="rotate(10 187 137)"/><rect x="230" y="160" width="24" height="12" rx="6" fill="#3f8fb0" transform="rotate(16 242 166)"/><rect x="235" y="145" width="20" height="10" rx="5" fill="#2f9e44" transform="rotate(-13 245 150)"/><rect x="255" y="117" width="16" height="8" rx="4" fill="#ff8787" transform="rotate(-7 263 121)"/></g>
+<text x="240" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#205269">Amul Pulav</text>
+<text x="240" y="285" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#205269">Amul Butter Jain Pulav</text>
+<text x="240" y="308" text-anchor="middle" font-family="Arial,sans-serif" font-size="34">🍛</text>
+</svg>
